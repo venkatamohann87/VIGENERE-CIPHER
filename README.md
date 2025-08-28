@@ -31,6 +31,57 @@ STEP-8: Repeat the above steps to generate the entire cipher text.
 
 ## PROGRAM
 
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+void vigenereEncrypt(char *text, const char *key) {
+    int keyLen = strlen(key), j = 0;
+    for (int i = 0; text[i] != '\0'; i++) {
+        char c = text[i];
+        if (('A' <= c && c <= 'Z') || ('a' <= c && c <= 'z')) {
+            int base = ('A' <= c && c <= 'Z') ? 'A' : 'a';
+            int k = toupper((unsigned char)key[j % keyLen]) - 'A';
+            text[i] = (char)(((c - base + k) % 26) + base);
+            j++;
+        }
+    }
+}
+
+void vigenereDecrypt(char *text, const char *key) {
+    int keyLen = strlen(key), j = 0;
+    for (int i = 0; text[i] != '\0'; i++) {
+        char c = text[i];
+        if (('A' <= c && c <= 'Z') || ('a' <= c && c <= 'z')) {
+            int base = ('A' <= c && c <= 'Z') ? 'A' : 'a';
+            int k = toupper((unsigned char)key[j % keyLen]) - 'A';
+            text[i] = (char)(((c - base - k + 26) % 26) + base);
+            j++;
+        }
+    }
+}
+
+int main(void) {
+    const char *key = "KEY";
+    char message[1024];
+
+    printf("Enter the secret message: ");
+    if (!fgets(message, sizeof(message), stdin)) return 1;
+    message[strcspn(message, "\n")] = '\0';
+
+    vigenereEncrypt(message, key);
+    printf("Encrypted Message: %s\n", message);
+
+    vigenereDecrypt(message, key);
+    printf("Decrypted Message: %s\n", message);
+
+    return 0;
+}
+
 ## OUTPUT
 
+<img width="507" height="200" alt="image" src="https://github.com/user-attachments/assets/8116e4c1-68a2-452b-8fda-055363b36baa" />
+
+
 ## RESULT
+VIGENERE-CIPHER IS SUCCESSSFULLY IMPLEMENTED WITH OUTPUT
