@@ -30,7 +30,7 @@ STEP-8: Repeat the above steps to generate the entire cipher text.
 
 
 ## PROGRAM
-
+```
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
@@ -77,7 +77,7 @@ int main(void) {
 
     return 0;
 }
-
+```
 ## OUTPUT
 
 <img width="507" height="200" alt="image" src="https://github.com/user-attachments/assets/8116e4c1-68a2-452b-8fda-055363b36baa" />
